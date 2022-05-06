@@ -1,0 +1,32 @@
+@use 'sass:map';
+@use 'sass:list';
+
+$font-styles: (
+  headline1: 28px bold 38px,
+  headline2: 22px bold 30px,
+  headline3: 20px bold 28px,
+  headline4: 18px bold 24px,
+  subtitle1: 18px medium 24px,
+  subtitle2: 16px medium 22px,
+  subtitle3: 14px medium 20px,
+  body1: 16px regular 26px,
+  body2: 14px regular 24px,
+  caption: 12px regular 20px,
+  subcaption: 11px regular 18px,
+);
+
+@mixin typography($name) {
+  $item: map.get($font-styles, $name);
+
+  @if not $item {
+    @error '`#{$name}` is not a valid font style.';
+  }
+
+  $size: list.nth($item, 1);
+  $weight: list.nth($item, 2);
+  $line-height: list.nth($item, 3);
+
+  font-weight: $weight;
+  font-size: $size;
+  line-height: $line-height;
+}

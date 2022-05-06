@@ -70,14 +70,11 @@
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
-      "yarn lint-fix",
+      "yarn lint:fix",
       "yarn prettier"
     ],
     "*.{scss,css}": [
       "stylelint --fix"
-    ],
-    "*.test.{js,jsx,ts,tsx}": [
-      "yarn test:ci"
     ],
     "*.json": [
       "yarn prettier"

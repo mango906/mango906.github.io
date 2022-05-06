@@ -32,6 +32,8 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.29.4",
     "eslint-plugin-react-hooks": "^4.5.0",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.4.1",
     "prettier": "^2.6.2",
     "sass": "^1.51.0",
     "stylelint": "^14.8.2",
@@ -54,7 +56,10 @@
     "clean": "gatsby clean",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx src",
-    "lint:fix": "eslint --fix --ext .js,.jsx,.ts,.tsx src"
+    "lint:fix": "eslint --fix --ext .js,.jsx,.ts,.tsx src",
+    "prettier": "prettier --write",
+    "stylelint": "stylelint '**/*.{scss,css}'",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -62,5 +67,20 @@
   },
   "bugs": {
     "url": "https://github.com/gatsbyjs/gatsby/issues"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "yarn lint-fix",
+      "yarn prettier"
+    ],
+    "*.{scss,css}": [
+      "stylelint --fix"
+    ],
+    "*.test.{js,jsx,ts,tsx}": [
+      "yarn test:ci"
+    ],
+    "*.json": [
+      "yarn prettier"
+    ]
   }
 }
